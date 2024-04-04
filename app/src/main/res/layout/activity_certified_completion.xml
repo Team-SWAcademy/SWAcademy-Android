@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cl_certified_completion"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/certified_completion_background" >
+    tools:context=".presentation.CertifiedCompletionActivity"
+    android:background="@color/white_FAFDFF" >
 
     <TextView
         android:id="@+id/tv_certified_completion_title"
@@ -25,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:background="@drawable/shape_certified_completion_content_rect"
+        android:background="@drawable/shape_fill_white_e9f1ff_stroke_r16_rect"
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/tv_certified_completion_title">
 
@@ -56,7 +58,7 @@
             android:id="@+id/tv_certified_completion_content_title_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="100p"
+            android:text="100p"
             android:layout_marginTop="-10dp"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -91,7 +93,7 @@
                 android:id="@+id/tv_certified_completion_content_location_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="00 카페"
+                android:text="00 카페"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -115,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                tools:text="2024년 OO월 OO일 OO시 OO분"
+                android:text="2024년 OO월 OO일 OO시 OO분"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -139,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                tools:text="512p"
+                android:text="512p"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -152,11 +154,12 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="27dp"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/shape_certified_completion_btn_rect"
+                android:background="@drawable/shape_bdf4f8_fill_stroke_f0ebe8_r50_rect"
                 android:text="@string/go_home"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:stateListAnimator="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,3 +170,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
