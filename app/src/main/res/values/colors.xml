@@ -3,9 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="certified_completion_background">#FAFDFF</color>
-    <color name="mint">#BDF4F8</color>
-    <color name="gray">#F0EBE8</color>
-    <color name="gray_blue">#E9F1FF</color>
+    <color name="white_FAFDFF">#FAFDFF</color>
+    <color name="blue_BDF4F8">#BDF4F8</color>
+    <color name="gray_F0EBE8">#F0EBE8</color>
+    <color name="gray_DADADA">#DADADA</color>
+    <color name="blue_E9F1FF">#E9F1FF</color>
+    <color name="blue_3DA9FC">#3DA9FC</color>
 
 </resources>
