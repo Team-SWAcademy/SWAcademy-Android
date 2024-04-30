@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_cafe_thumbnail"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/bg_blueport"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/shape_white_fill_dadada_stroke_r10"
+        android:scaleType="fitXY"
+        android:padding="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_rental_cup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        android:text="다회용기 대여중"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iv_cafe_thumbnail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_tv_cafe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/iv_cafe_thumbnail"
+        app:layout_constraintTop_toBottomOf="@id/tv_rental_cup_title">
+
+        <TextView
+            android:id="@+id/tv_cafe_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카페 : "
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv_cafe_name_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학생회관 블루포트"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/iv_cafe_thumbnail"
+        app:layout_constraintTop_toBottomOf="@id/layout_tv_cafe_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:id="@+id/tv_rental_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대여 일시 : "
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_rental_time_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2024.04.04 15:00:00"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    
+    <CheckBox
+        android:id="@+id/checkbox_rental_cup"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
