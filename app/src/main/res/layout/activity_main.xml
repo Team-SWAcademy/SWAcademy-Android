@@ -41,7 +41,7 @@
             android:id="@+id/fab_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:backgroundTint="@android:color/transparent"
+            app:backgroundTint="@color/blue_D1E9FF"
             android:src="@drawable/ic_camera"
             app:layout_anchor="@id/bottom_app_bar"
             app:layout_anchorGravity="center" />
