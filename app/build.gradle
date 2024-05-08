@@ -7,6 +7,9 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.20'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     namespace = "com.example.swacademy_android"
     compileSdk = 34
@@ -17,7 +20,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField "String", "KAKAO_NATIVE_APP_KEY", localProperties['KAKAO_NATIVE_APP_KEY']
+        buildConfigField "String", 'BASE_URL', localProperties['BASE_URL']
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -114,5 +118,11 @@ dependencies {
 
     //ZXing QR Scanner
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
+    implementation "com.kakao.sdk:v2-all:2.20.1" // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation "com.kakao.sdk:v2-user:2.20.1" // 카카오 로그인 API 모듈
+    implementation "com.kakao.sdk:v2-share:2.20.1" // 카카오톡 공유 API 모듈
+    implementation "com.kakao.sdk:v2-talk:2.20.1" // 카카오톡 채널, 카카오톡 소셜, 카카오톡 메시지 API 모듈
+    implementation "com.kakao.sdk:v2-cert:2.20.1" // 카카오톡 인증 서비스 API 모듈
 
 }
