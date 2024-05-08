@@ -1,21 +1,18 @@
 package com.example.swacademy_android.presentation
 
-import com.example.swacademy_android.databinding.FragmentMultiuseDetailBinding
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import com.example.swacademy_android.R
 import androidx.appcompat.app.AppCompatActivity
+import com.example.swacademy_android.databinding.ActivityMultiuseDetailBinding
+import com.example.swacademy_android.util.BindingActivity
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
-class MultiuseDetailActivity : AppCompatActivity() {
-
-    lateinit var binding: FragmentMultiuseDetailBinding
+class MultiuseDetailActivity : BindingActivity<ActivityMultiuseDetailBinding>(R.layout.activity_multiuse_detail) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentMultiuseDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         binding.clMultiuseDetailReturnBtn.setOnClickListener {
             val options = ScanOptions()
             options.apply{
