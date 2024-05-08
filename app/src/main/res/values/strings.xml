@@ -6,7 +6,20 @@
     <string name="certified_completion_title">인증 완료 화면</string>
     <string name="save_up_point_title">적립</string>
     <string name="detail_title_location">장소 : </string>
+    <string name="detail_content_location">00 카페</string>
     <string name="detail_title_date">인증 일시 : </string>
+    <string name="detail_content_date">2024년 OO월 OO일 OO시 OO분</string>
     <string name="detail_title_point">누적 포인트 : </string>
+    <string name="detail_content_point">512p</string>
     <string name="go_home">홈으로</string>
+
+    <!--  multiuse detail fragment  -->
+    <string name="description_img_multiuse_detail_represent">Multiuse Container Image</string>
+    <string name="multiuse_detail_title">다회용기 이용 조회</string>
+    <string name="multiuse_detail_location_title">대여장소</string>
+    <string name="multiuse_detail_date_title">대여 일시</string>
+    <string name="multiuse_detail_type_title">대여\n다회용기 종류</string>
+    <string name="multiuse_detail_point_title">반납시\n획득 포인트</string>
+    <string name="multiuse_detail_return_location_title">반납 가능 장소</string>
+    <string name="multiuse_detail_return_btn">다회용기 반납하기</string>
 </resources>
