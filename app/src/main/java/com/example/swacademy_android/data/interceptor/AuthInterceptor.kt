@@ -6,6 +6,16 @@ import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        TODO("Not yet implemented")
+        val token = "Bearer "
+
+        val originalRequest = chain.request()
+
+        val headerRequest = originalRequest.newBuilder()
+            .header(
+                "Authorization",
+                "$token"
+            )
+            .build()
+        return chain.proceed(headerRequest)
     }
 }
