@@ -2,6 +2,7 @@ package com.example.swacademy_android.di
 
 import com.example.swacademy_android.data.interceptor.AuthInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.example.swacademy_android.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient, jsonConverter: Converter.Factory): Retrofit = Retrofit.Builder()
-        .baseUrl("") // baseUrl 삽입 예정
+        .baseUrl(BuildConfig.BASE_URL) // baseUrl 삽입 예정
         .client(client)
         .addConverterFactory(jsonConverter)
         .build()
