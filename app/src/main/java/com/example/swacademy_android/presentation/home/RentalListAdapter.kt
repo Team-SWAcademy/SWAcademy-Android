@@ -13,7 +13,7 @@ import com.example.swacademy_android.data.model.response.HomeResponseDto
 import com.example.swacademy_android.data.model.response.ListResponseDto
 import com.example.swacademy_android.databinding.ItemCurrentRentalListBinding
 
-class RentalListAdapter(private val checkedListener : OnCheckedChangeListener) : ListAdapter<HomeResponseDto.HomeResult.UseRes,RentalListAdapter.ListViewHolder>(diffUtil) {
+class RentalListAdapter(private val clickItemListener : OnClickItemListener) : ListAdapter<HomeResponseDto.HomeResult.UseRes,RentalListAdapter.ListViewHolder>(diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
             ItemCurrentRentalListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -51,7 +51,7 @@ class RentalListAdapter(private val checkedListener : OnCheckedChangeListener) :
             }
         }
     }
-    interface OnCheckedChangeListener {
-        fun onClickItem(position: Int, isChecked: Boolean)
+    interface OnClickItemListener {
+        fun onClickRentalListItem(position: Int)
     }
 }
