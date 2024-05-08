@@ -18,31 +18,35 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home),
-    RentalListAdapter.OnCheckedChangeListener {
+    RentalListAdapter.OnClickItemListener {
 
     private lateinit var rentalListAdapter: RentalListAdapter
     private val viewModel by viewModels<HomeViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setRentalList()
+        initRentalListAdapter()
+        getHomeData()
+        getRentalListData()
     }
 
-    override fun onCheckedChange(position: Int, isChecked: Boolean) {
+    override fun onClickRentalListItem(position: Int) {
+        TODO("Not yet implemented")
     }
 
-    private fun setRentalList() {
-        var tempList: MutableList<ListResponseDto.ListData> = mutableListOf()
-        tempList.apply {
-            add(ListResponseDto.ListData(1, "학생회관 블루포트", "2024.04.04 15:00:00", "ㅇㅇ"))
-            add(ListResponseDto.ListData(2, "서호관 블루포트", "2024.04.04 16:00:00", "ㅇㅇ"))
-            add(ListResponseDto.ListData(3, "학생회관 블루포트", "2024.04.04 17:00:00", "ㅇㅇ"))
-            add(ListResponseDto.ListData(4, "서호관 블루포트", "2024.04.04 18:00:00", "ㅇㅇ"))
-            add(ListResponseDto.ListData(5, "서호관 블루포트", "2024.04.05 18:00:00", "ㅇㅇ"))
-            add(ListResponseDto.ListData(6, "학생회관 블루포트", "2024.04.06 18:00:00", "ㅇㅇ"))
-            add(ListResponseDto.ListData(7, "서호관 블루포트", "2024.04.07 18:00:00", "ㅇㅇ"))
-        }
+    private fun initRentalListAdapter(){
         rentalListAdapter = RentalListAdapter(this)
         binding.rvRentalList.adapter = rentalListAdapter
-        rentalListAdapter.submitList(tempList)
+    }
+
+    private fun getRentalListData(){
+        viewModel.rentalListResponse.observe(viewLifecycleOwner){
+            rentalListAdapter.submitList(it)
+        }
+    }
+    private fun getHomeData(){
+        viewModel.homeResponseResult.observe(viewLifecycleOwner) {
+            binding.tvCurrentCountContent.text = "${it.useCount}개"
+            binding.tvUserName.text= it.nickname
+        }
     }
 }
