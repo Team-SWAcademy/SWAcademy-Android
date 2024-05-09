@@ -39,6 +39,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:text="@string/multiuse_detail_title" />
 
                     <LinearLayout
@@ -67,6 +68,7 @@
                         app:layout_constraintBottom_toTopOf="@id/tv_multiuse_detail_location_content"
                         android:layout_marginStart="16sp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:text="@string/multiuse_detail_location_title" />
 
                     <TextView
@@ -77,6 +79,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_multiuse_detail_location_title"
                         app:layout_constraintBottom_toTopOf="@id/tv_multiuse_detail_date_title"
                         android:layout_marginStart="16sp"
+                        android:textColor="@color/black"
                         android:text="블루포트 인하대학교점" />
 
                     <TextView
@@ -88,6 +91,7 @@
                         app:layout_constraintBottom_toTopOf="@id/tv_multiuse_detail_date_content"
                         android:layout_marginStart="16sp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:text="@string/multiuse_detail_date_title" />
 
                     <TextView
@@ -98,6 +102,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_multiuse_detail_date_title"
                         app:layout_constraintBottom_toBottomOf="@id/ll_multiuse_detail_icon"
                         android:layout_marginStart="16sp"
+                        android:textColor="@color/black"
                         android:text="2024. 04. 27 12:00:00" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,6 +127,7 @@
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textAlignment="center"
+                            android:textColor="@color/black"
                             android:text="@string/multiuse_detail_type_title" />
 
                         <ImageView
@@ -157,6 +163,7 @@
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textAlignment="center"
+                            android:textColor="@color/black"
                             android:text="@string/multiuse_detail_point_title" />
 
                         <TextView
@@ -168,6 +175,7 @@
                             android:layout_marginTop="25dp"
                             android:textSize="30sp"
                             android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:text="100P" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -190,6 +198,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:text="@string/multiuse_detail_return_location_title" />
 
                     <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
@@ -228,6 +237,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
