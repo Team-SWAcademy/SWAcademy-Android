@@ -131,6 +131,7 @@
                             android:text="@string/multiuse_detail_type_title" />
 
                         <ImageView
+                            android:id="@+id/iv_multiuse_category"
                             android:layout_width="43dp"
                             android:layout_height="52dp"
                             app:layout_constraintTop_toBottomOf="@id/tv_multiuse_detail_type_title"
@@ -167,6 +168,7 @@
                             android:text="@string/multiuse_detail_point_title" />
 
                         <TextView
+                            android:id="@+id/tv_multiuse_detail_point_content"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/tv_multiuse_detail_point_title"
@@ -175,7 +177,7 @@
                             android:layout_marginTop="25dp"
                             android:textSize="30sp"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="@color/blue_3DA9FC"
                             android:text="100P" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

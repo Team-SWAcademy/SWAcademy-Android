@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import com.example.swacademy_android.R
 import com.example.swacademy_android.databinding.ActivityMainBinding
 import com.example.swacademy_android.presentation.home.HomeFragment
+import com.example.swacademy_android.presentation.point.PointFragment
 import com.example.swacademy_android.presentation.rental.RentalChoiceMultiUseActivity
+import com.example.swacademy_android.presentation.store.StoreFragment
 import com.example.swacademy_android.util.BindingActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.ScanContract
@@ -51,7 +53,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 changeFragment(
                 when(it.itemId) {
                     R.id.menu_home -> HomeFragment()
-                    else -> MypageFragment()
+                    R.id.menu_mypage -> MypageFragment()
+                    R.id.menu_point -> PointFragment()
+                    R.id.menu_store -> StoreFragment()
+                    else -> HomeFragment()
                 })
                 true
             }
