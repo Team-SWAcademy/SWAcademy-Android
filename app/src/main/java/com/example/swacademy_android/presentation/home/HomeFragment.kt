@@ -1,24 +1,17 @@
 package com.example.swacademy_android.presentation.home
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.example.swacademy_android.R
-import com.example.swacademy_android.data.model.response.ListResponseDto
 import com.example.swacademy_android.databinding.FragmentHomeBinding
-import com.example.swacademy_android.presentation.MainActivity
+import com.example.swacademy_android.presentation.detail.MultiuseDetailActivity
 import com.example.swacademy_android.util.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home),
-    RentalListAdapter.OnClickItemListener {
+class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
     private lateinit var rentalListAdapter: RentalListAdapter
     private val viewModel by viewModels<HomeViewModel>()
@@ -29,12 +22,13 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         getRentalListData()
     }
 
-    override fun onClickRentalListItem(position: Int) {
-        TODO("Not yet implemented")
-    }
-
     private fun initRentalListAdapter(){
-        rentalListAdapter = RentalListAdapter(this)
+        rentalListAdapter = RentalListAdapter{
+            Intent(Intent(requireContext(), MultiuseDetailActivity::class.java)).apply {
+                putExtra("useAt", it.useAt)
+                startActivity(this)
+            }
+        }
         binding.rvRentalList.adapter = rentalListAdapter
     }
 

@@ -3,17 +3,22 @@ package com.example.swacademy_android.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.swacademy_android.R
 import com.example.swacademy_android.databinding.ActivityMainBinding
 import com.example.swacademy_android.presentation.home.HomeFragment
+import com.example.swacademy_android.presentation.rental.RentalChoiceMultiUseActivity
 import com.example.swacademy_android.util.BindingActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.IOException
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -28,24 +33,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         clickQrScannerBtn()
     }
 
-    private val qrCodeLauncher = registerForActivityResult(ScanContract()) {
-        result : ScanIntentResult ->
-        if (result.contents == null) {
-            Toast.makeText (this, "Cancelled" , Toast.LENGTH_LONG).show()
-        }
-        else {
-            Toast.makeText (this, "Scanned:" + result.contents, Toast.LENGTH_LONG).show()
-        }
-    }
-
     private fun clickQrScannerBtn(){
         binding.fabCamera.setOnClickListener {
-            val options = ScanOptions()
-            options.apply{
-                setOrientationLocked(false)
-                setPrompt("화면에 QR코드를 스캔해주세요")
-            }
-            qrCodeLauncher.launch(options)
+           startActivity(Intent(this@MainActivity,RentalChoiceMultiUseActivity::class.java))
         }
     }
 
@@ -54,9 +44,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         with(binding){
             bottomNavigationMain.background = null
             bottomNavigationMain.menu.getItem(1).isEnabled = false
-            fabCamera.setOnClickListener {
-                startActivity(Intent(this@MainActivity,CameraActivity::class.java))
-            }
         }
 
         binding.bottomNavigationMain.run {

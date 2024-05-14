@@ -2,6 +2,7 @@ package com.example.swacademy_android.presentation.home
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +14,7 @@ import com.example.swacademy_android.data.model.response.HomeResponseDto
 import com.example.swacademy_android.data.model.response.ListResponseDto
 import com.example.swacademy_android.databinding.ItemCurrentRentalListBinding
 
-class RentalListAdapter(private val clickItemListener : OnClickItemListener) : ListAdapter<HomeResponseDto.HomeResult.UseRes,RentalListAdapter.ListViewHolder>(diffUtil) {
+class RentalListAdapter(private val itemClick: (HomeResponseDto.HomeResult.UseRes) -> (Unit)) : ListAdapter<HomeResponseDto.HomeResult.UseRes,RentalListAdapter.ListViewHolder>(diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
             ItemCurrentRentalListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,7 +30,9 @@ class RentalListAdapter(private val clickItemListener : OnClickItemListener) : L
         fun onBind(data: HomeResponseDto.HomeResult.UseRes, position:Int) {
             with(binding) {
                 tvRentalTimeContent.text = data.useAt
-                Log.e("hyeon",data.toString())
+                root.setOnClickListener {
+                    itemClick(data)
+                }
             }
         }
     }
@@ -51,7 +54,7 @@ class RentalListAdapter(private val clickItemListener : OnClickItemListener) : L
             }
         }
     }
-    interface OnClickItemListener {
-        fun onClickRentalListItem(position: Int)
+    interface OnItemClickListener{
+        fun onClick(v: View, position:Int)
     }
 }
