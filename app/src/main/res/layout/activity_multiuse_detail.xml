@@ -177,7 +177,7 @@
                             android:layout_marginTop="25dp"
                             android:textSize="30sp"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="@color/blue_3DA9FC"
                             android:text="100P" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
