@@ -154,7 +154,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="27dp"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/shape_bdf4f8_fill_stroke_f0ebe8_r50_rect"
+                android:background="@drawable/shape_d1e9ff_fill_stroke_f0ebe8_r50_rect"
                 android:text="@string/go_home"
                 android:textSize="18sp"
                 android:textStyle="bold"

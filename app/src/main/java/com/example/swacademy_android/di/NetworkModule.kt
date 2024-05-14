@@ -21,7 +21,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient, jsonConverter: Converter.Factory): Retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL) // baseUrl 삽입 예정
+        .baseUrl("http://15.164.96.237") // baseUrl 삽입 예정
         .client(client)
         .addConverterFactory(jsonConverter)
         .build()
