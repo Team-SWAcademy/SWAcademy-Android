@@ -22,4 +22,22 @@
     <string name="multiuse_detail_point_title">반납시\n획득 포인트</string>
     <string name="multiuse_detail_return_location_title">반납 가능 장소</string>
     <string name="multiuse_detail_return_btn">다회용기 반납하기</string>
+
+    <!-- mypage fragment -->
+    <string name="mypage_title">마이페이지</string>
+    <string name="logout">로그아웃</string>
+    <string name="user_multiuse_state">나의 다회용기 이용</string>
+    <string name="current_point">현재 포인트</string>
+    <string name="rental_count">대여 횟수</string>
+    <string name="return_count">반납 횟수</string>
+    <string name="multiuse_statistics">나의 다회용기 통계</string>
+    <string name="week_statistics">주별</string>
+    <string name="month_statistics">월별</string>
+
+    <!-- rental information activity -->
+    <string name="rental_info_title">대여내용</string>
+    <string name="rental_location">대여장소</string>
+    <string name="rental_choice_title">취급 다회용기</string>
+    <string name="rental_choice_subtitle">빌릴 다회용기 종류를 선택해주세요.</string>
+    <string name="rental_btn_content">다회용기 대여하기</string>
 </resources>
