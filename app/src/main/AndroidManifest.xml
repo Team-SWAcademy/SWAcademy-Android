@@ -44,6 +44,11 @@
             android:name=".presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -74,16 +79,8 @@
 
         <activity
             android:name=".presentation.RentalInfoActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
     </application>
 
