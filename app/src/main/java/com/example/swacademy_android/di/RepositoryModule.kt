@@ -2,7 +2,7 @@ package com.example.swacademy_android.di
 
 import com.example.swacademy_android.data.repository.DetailRepositoryImpl
 import com.example.swacademy_android.data.repository.HomeRepositoryImpl
-import com.example.swacademy_android.data.repository.RentalMultiUseRepositoryImpl
+import com.example.swacademy_android.data.repository.RentalRepositoryImpl
 import com.example.swacademy_android.domain.repository.DetailRepository
 import com.example.swacademy_android.domain.repository.HomeRepository
 import com.example.swacademy_android.domain.repository.RentalRepository
@@ -22,7 +22,7 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindRentalRepository(rentalRepositoryImpl : RentalMultiUseRepositoryImpl) : RentalRepository
+    abstract fun bindRentalRepository(rentalRepositoryImpl : RentalRepositoryImpl) : RentalRepository
 
     @Binds
     @Singleton
