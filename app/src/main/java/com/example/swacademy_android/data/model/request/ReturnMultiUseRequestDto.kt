@@ -5,8 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ReturnMultiUseRequestDto(
-    @SerialName("locationName")
-    val locationName: String,
-    @SerialName("locationAddress")
-    val locationAddress: String
+    @SerialName("returnLocationId")
+    val returnLocationId: Int,
 )

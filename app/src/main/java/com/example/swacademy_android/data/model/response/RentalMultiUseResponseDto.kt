@@ -25,6 +25,16 @@ data class RentalMultiUseResponseDto(
         val userId: Int,
         @SerialName("locationId")
         val locationId: Int,
+        @SerialName("locationName")
+        val locationName: String,
+        @SerialName("locationAddress")
+        val locationAddress: String,
+        @SerialName("locationImageUrl")
+        val locationImageUrl: String,
+        @SerialName("latitude")
+        val latitude: Double,
+        @SerialName("longitude")
+        val longitude: Double,
         @SerialName("multiUseContainerId")
         val multiUseContainerId: Int,
         @SerialName("status")
