@@ -1,7 +1,9 @@
 package com.example.swacademy_android.data.repository
 
 import com.example.swacademy_android.data.datasource.DetailRemoteDataSource
+import com.example.swacademy_android.data.model.request.ReturnMultiUseRequestDto
 import com.example.swacademy_android.data.model.response.DetailMultiUseResponseDto
+import com.example.swacademy_android.data.model.response.ReturnMultiUseResponseDto
 import com.example.swacademy_android.domain.repository.DetailRepository
 import com.example.swacademy_android.domain.repository.HomeRepository
 import timber.log.Timber
@@ -16,4 +18,16 @@ class DetailRepositoryImpl @Inject constructor(private val detailRemoteDataSourc
 
         }.onFailure {
         }
+
+    override suspend fun patchReturnMultiUse(
+        useAt: String,
+        locationId: ReturnMultiUseRequestDto
+    ): Result<ReturnMultiUseResponseDto> =
+        runCatching {
+            detailRemoteDataSource.patchReturnMultiUse(useAt, locationId)
+        }.onSuccess {
+
+        }.onFailure {
+
+            }
 }
