@@ -5,10 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RentalMultiUseRequestDto (
-    @SerialName("locationName")
-    val locationName: String,
-    @SerialName("locationAddress")
-    val locationAddress: String,
+    @SerialName("locationId")
+    val locationId : Int,
     @SerialName("point")
     val point:Int,
     @SerialName("multiUseContainerId")

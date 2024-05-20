@@ -23,7 +23,9 @@ data class HomeResponseDto(
         @SerialName("getUseResList")
         val getUseResList: List<UseRes>,
         @SerialName("useCount")
-        val useCount: Int
+        val useCount: Int,
+        @SerialName("currentPoint")
+        val currentPoint: Int
 
     ) {
         @Serializable
@@ -32,7 +34,8 @@ data class HomeResponseDto(
             @SerialName("locationImageUrl") val locationImageUrl: String,
             @SerialName("locationName") val locationName: String,
             @SerialName("useAt") val useAt: String,
-            @SerialName("status") val status: String
+            @SerialName("status") val status: String,
+            @SerialName("multiUseContainerId") val multiUseContainerId:Int,
         )
     }
 }

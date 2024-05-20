@@ -1,4 +1,4 @@
-package com.example.swacademy_android.presentation.detail
+package com.example.swacademy_android.presentation.returns
 
 import android.content.Intent
 import android.graphics.Color
@@ -11,19 +11,16 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import com.example.swacademy_android.data.model.request.RentalMultiUseRequestDto
-import com.example.swacademy_android.data.model.request.ReturnMultiUseRequestDto
-import com.example.swacademy_android.databinding.FragmentRentalDialogBinding
 import com.example.swacademy_android.databinding.FragmentReturnDialogBinding
-import com.example.swacademy_android.presentation.MainActivity
-import com.example.swacademy_android.presentation.rental.CameraViewModel
+import com.example.swacademy_android.presentation.returns.CertifiedCompletionActivity
+import com.example.swacademy_android.presentation.detail.MultiUseDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class RentalDialogFragment(private val qrData: MutableList<String>) : DialogFragment() {
+class ReturnDialogFragment(private val qrData: MutableList<String>) : DialogFragment() {
 
-    private val viewModel: CameraViewModel by viewModels()
+    private val viewModel: MultiUseDetailViewModel by viewModels()
     private var _binding: FragmentReturnDialogBinding? = null
     private val binding get() = requireNotNull(_binding) { "ReturnDialogFragment is null" }
 
@@ -51,15 +48,20 @@ class RentalDialogFragment(private val qrData: MutableList<String>) : DialogFrag
                 dismiss()
             }
             btnConfirm.setOnClickListener {
+                viewModel.patchReturnMultiUse(qrData[1], qrData[0].toInt())
+                viewModel.returnResponseStatus.observe(viewLifecycleOwner) {
+                    if (it == RETURN_SUCCESS) {
+                        dismiss()
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                CertifiedCompletionActivity::class.java
+                            ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        )
+                    }
+                }
             }
         }
-    }
-
-    fun setRentalMultiUse(qrCodeDataList: List<String>): ReturnMultiUseRequestDto {
-        return ReturnMultiUseRequestDto(
-            qrCodeDataList[0],
-            qrCodeDataList[1]
-        )
     }
 
     override fun onResume() {
@@ -73,5 +75,9 @@ class RentalDialogFragment(private val qrData: MutableList<String>) : DialogFrag
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object{
+        private val RETURN_SUCCESS = "RETURN_SUCCESS"
     }
 }

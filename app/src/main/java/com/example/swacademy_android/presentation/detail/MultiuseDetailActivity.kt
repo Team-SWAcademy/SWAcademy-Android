@@ -1,15 +1,13 @@
 package com.example.swacademy_android.presentation.detail
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import coil.load
 import com.example.swacademy_android.R
 import com.example.swacademy_android.databinding.ActivityMultiuseDetailBinding
+import com.example.swacademy_android.presentation.camera.CameraActivity
 import com.example.swacademy_android.util.BindingActivity
-import com.journeyapps.barcodescanner.ScanContract
-import com.journeyapps.barcodescanner.ScanIntentResult
-import com.journeyapps.barcodescanner.ScanOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,22 +35,22 @@ class MultiuseDetailActivity :
                 tvMultiuseDetailLocationContent.text = "${it.locationName} ${it.locationAddress}"
                 tvMultiuseDetailDateContent.text = it.useAt
                 tvMultiuseDetailPointContent.text = "${it.point}P"
-                ivMultiuseCategory.load(setMultiUseCategory(it.multiUseContainer))
+                ivMultiuseCategory.load(setMultiUseCategory(it.multiUseContainerId))
             }
         }
     }
 
-    private fun setMultiUseCategory(multiUseCategory: String): Int {
+    private fun setMultiUseCategory(multiUseCategory: Int): Int {
         when (multiUseCategory) {
-            "컵" -> {
+            1 -> {
                 return R.drawable.ic_multiuse_detail_type_cup
             }
 
-            "그릇" -> {
+            2 -> {
                 return R.drawable.ic_multiuse_detail_type_bowl
             }
 
-            "도시락" -> {
+            3 -> {
                 return R.drawable.ic_multiuse_detail_type_box
             }
 
@@ -64,22 +62,10 @@ class MultiuseDetailActivity :
 
     private fun setOnclickBtnReturn() {
         binding.clMultiuseDetailReturnBtn.setOnClickListener {
-            val options = ScanOptions()
-            options.apply {
-                setOrientationLocked(false)
-                setPrompt("화면에 QR코드를 스캔해주세요")
-            }
-            qrCodeLauncher.launch(options)
+            startActivity(Intent(this@MultiuseDetailActivity, CameraActivity::class.java)
+                .apply{
+                    putExtra("useAt",viewModel.detailResponseDto.value?.useAt)
+                })
         }
     }
-
-    private val qrCodeLauncher =
-        registerForActivityResult(ScanContract()) { result: ScanIntentResult ->
-            if (result.contents == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Scanned:" + result.contents, Toast.LENGTH_LONG).show()
-            }
-        }
-
 }

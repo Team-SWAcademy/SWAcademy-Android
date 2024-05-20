@@ -40,7 +40,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private fun getHomeData(){
         viewModel.homeResponseResult.observe(viewLifecycleOwner) {
             binding.tvCurrentCountContent.text = "${it.useCount}개"
-            binding.tvUserName.text= it.nickname
+            binding.tvUserName.text= "${it.nickname}님의"
+            binding.tvUserPoint.text ="${it.currentPoint}P"
         }
     }
 }

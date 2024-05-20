@@ -29,8 +29,8 @@ data class DetailMultiUseResponseDto(
         val useAt: String,
         @SerialName("point")
         val point: Int,
-        @SerialName("multiUseContainer")
-        val multiUseContainer: String,
+        @SerialName("multiUseContainerId")
+        val multiUseContainerId: Int,
         @SerialName("getReturnResList")
         val getReturnResList: List<ReturnRes>,
     ) {

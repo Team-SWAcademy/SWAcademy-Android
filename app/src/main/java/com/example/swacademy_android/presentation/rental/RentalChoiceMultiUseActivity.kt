@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.swacademy_android.R
 import com.example.swacademy_android.databinding.ActivityRentalChoiceMultiuseBinding
+import com.example.swacademy_android.presentation.camera.CameraActivity
 import com.example.swacademy_android.util.BindingActivity
 import dagger.hilt.android.AndroidEntryPoint
 

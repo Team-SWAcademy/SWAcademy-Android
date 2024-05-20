@@ -1,15 +1,14 @@
-package com.example.swacademy_android.presentation.rental
+package com.example.swacademy_android.presentation.camera
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.example.swacademy_android.R
 import com.example.swacademy_android.databinding.ActivityCameraBinding
-import com.example.swacademy_android.presentation.MainActivity
-import com.example.swacademy_android.presentation.home.HomeViewModel
+import com.example.swacademy_android.presentation.rental.RentalInfoActivity
+import com.example.swacademy_android.presentation.rental.viewmodel.RentalInfoViewModel
+import com.example.swacademy_android.presentation.returns.ReturnDialogFragment
 import com.example.swacademy_android.util.BindingActivity
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -18,48 +17,49 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CameraActivity : BindingActivity<ActivityCameraBinding>(R.layout.activity_camera) {
-    private val viewModel by viewModels<CameraViewModel>()
-    var isBeforeChoice : Boolean = false
+    private val viewModel by viewModels<RentalInfoViewModel>()
+    private var isChangedForRental = false
+    private var returnUseAt = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getMultiUseCategory()
-        getBeforeActivity()
         viewQrScanner()
+        isChangedForRental()
+        getReturnsUseAt()
     }
 
-    private fun getMultiUseCategory(): Int {
-        val multiUseCategory = intent.getIntExtra("category", -1)
-        return multiUseCategory
+    private fun isChangedForRental() {
+        isChangedForRental = intent.getBooleanExtra("rental", false)
     }
 
-    private fun getBeforeActivity(){
-        isBeforeChoice= intent.getBooleanExtra("choice",false)
+    private fun getReturnsUseAt(){
+        returnUseAt = intent.getStringExtra("useAt").toString()
     }
 
     private val qrCodeLauncher =
         registerForActivityResult(ScanContract()) { result: ScanIntentResult ->
-
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Scanned:" + result.contents, Toast.LENGTH_LONG).show()
-                if (isBeforeChoice) {
-                    showRentalDialogFragment(splitQrData(result.contents))
+                var qrData = result.contents.toString().split("\n").toMutableList()
+                if (isChangedForRental) {
+                    startActivity(
+                        Intent(
+                            this@CameraActivity,
+                            RentalInfoActivity::class.java
+                        ).apply {
+                            putExtra("locationId", qrData[0].toInt())
+                            putExtra("point", qrData[1].toInt())
+                        })
+                } else {
+                    qrData.add(returnUseAt)
+                    showReturnDialogFragment(qrData.toMutableList())
                 }
             }
         }
 
-    fun splitQrData(qrcodeData: String): MutableList<String> {
-        var qrData: MutableList<String> = mutableListOf()
-        for (i in 0 until 3) {
-            qrData.add(qrcodeData.split("\n")[i])
-        }
-        qrData.add(getMultiUseCategory().toString())
-        return qrData
-    }
-
-    private fun showRentalDialogFragment(qrData: MutableList<String>) {
-        RentalDialogFragment(qrData).apply {
+    private fun showReturnDialogFragment(qrData: MutableList<String>) {
+        ReturnDialogFragment(qrData).apply {
             show(supportFragmentManager, "RentalDialogFragment")
         }
     }

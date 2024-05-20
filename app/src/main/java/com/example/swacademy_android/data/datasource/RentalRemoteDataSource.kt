@@ -8,4 +8,5 @@ import javax.inject.Inject
 
 class RentalRemoteDataSource @Inject constructor(private val rentalService: RentalService) {
     suspend fun postRentalMultiUse(rentalMultiUseRequestDto: RentalMultiUseRequestDto) = rentalService.postRentalMultiUse(rentalMultiUseRequestDto)
+    suspend fun getRentalLocationData(locationId:Int, point:Int) = rentalService.getRentalLocationData(locationId, point)
 }

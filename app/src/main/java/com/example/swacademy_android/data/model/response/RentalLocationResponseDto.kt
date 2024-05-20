@@ -1,11 +1,11 @@
 package com.example.swacademy_android.data.model.response
 
-import com.example.swacademy_android.data.model.request.RentalMultiUseRequestDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.math.BigDecimal
 
 @Serializable
-data class RentalMultiUseResponseDto(
+data class RentalLocationResponseDto(
     @SerialName("isSuccess")
     val isSuccess: Boolean,
     @SerialName("code")
@@ -13,18 +13,12 @@ data class RentalMultiUseResponseDto(
     @SerialName("message")
     val message: String,
     @SerialName("result")
-    val result: Result
+    val result: Result,
 ) {
     @Serializable
     data class Result(
-        @SerialName("useAt")
-        val useAt: String,
-        @SerialName("point")
-        val point: Int,
-        @SerialName("userId")
-        val userId: Int,
         @SerialName("locationId")
-        val locationId: Int,
+        val locationId: Long,
         @SerialName("locationName")
         val locationName: String,
         @SerialName("locationAddress")
@@ -35,10 +29,9 @@ data class RentalMultiUseResponseDto(
         val latitude: Double,
         @SerialName("longitude")
         val longitude: Double,
-        @SerialName("multiUseContainerId")
-        val multiUseContainerId: Int,
-        @SerialName("status")
-        val status: String
-
+        @SerialName("point")
+        val point: Long,
+        @SerialName("multiUseContainerIdList")
+        val multiUseContainerIdList: List<Long>,
     )
 }

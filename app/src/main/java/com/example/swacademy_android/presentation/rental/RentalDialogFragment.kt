@@ -14,11 +14,11 @@ import androidx.fragment.app.viewModels
 import com.example.swacademy_android.data.model.request.RentalMultiUseRequestDto
 import com.example.swacademy_android.databinding.FragmentRentalDialogBinding
 import com.example.swacademy_android.presentation.MainActivity
-import com.kakao.sdk.user.UserApiClient
+import com.example.swacademy_android.presentation.camera.CameraViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RentalDialogFragment(private val qrData : MutableList<String>) : DialogFragment() {
+class RentalDialogFragment(private val rentalData : RentalMultiUseRequestDto) : DialogFragment() {
 
     private val viewModel: CameraViewModel by viewModels ()
     private var _binding: FragmentRentalDialogBinding? = null
@@ -48,7 +48,7 @@ class RentalDialogFragment(private val qrData : MutableList<String>) : DialogFra
                 dismiss()
             }
             btnConfirm.setOnClickListener {
-                viewModel.postRentalMultiUse(setRentalMultiUse(qrData))
+                viewModel.postRentalMultiUse(rentalData)
                 viewModel.responseStatusCode.observe(viewLifecycleOwner) {
                     if (it == "USE2000") {
                         Log.e("hyeon","성공 use2000")
@@ -65,12 +65,10 @@ class RentalDialogFragment(private val qrData : MutableList<String>) : DialogFra
         }
     }
 
-    fun setRentalMultiUse(qrCodeDataList: List<String>): RentalMultiUseRequestDto {
-        return RentalMultiUseRequestDto(
-            qrCodeDataList[0],
-            qrCodeDataList[1],
-            qrCodeDataList[2].toInt(),
-            qrCodeDataList[3].toInt()
+    fun setRentalMultiUse(qrCodeDataList: List<String>): List<Int> {
+        return listOf(
+            qrCodeDataList[0].toInt(),
+            qrCodeDataList[1].toInt()
         )
     }
 
