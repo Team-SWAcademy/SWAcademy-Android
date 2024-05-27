@@ -9,6 +9,7 @@ import com.example.swacademy_android.databinding.ActivityMainBinding
 import com.example.swacademy_android.presentation.home.HomeFragment
 import com.example.swacademy_android.presentation.point.PointFragment
 import com.example.swacademy_android.presentation.camera.CameraActivity
+import com.example.swacademy_android.presentation.mypage.MypageFragment
 import com.example.swacademy_android.presentation.store.StoreFragment
 import com.example.swacademy_android.util.BindingActivity
 import com.google.zxing.integration.android.IntentIntegrator
@@ -17,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var context: Context
-    private val qrCodeIntentIntegrator = IntentIntegrator(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

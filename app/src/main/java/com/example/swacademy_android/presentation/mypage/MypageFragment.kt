@@ -1,4 +1,4 @@
-package com.example.swacademy_android.presentation
+package com.example.swacademy_android.presentation.mypage
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,7 +6,9 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import com.example.swacademy_android.R
+import com.example.swacademy_android.data.model.response.MypageResponseDto
 import com.example.swacademy_android.databinding.FragmentMypageBinding
 import com.example.swacademy_android.util.BindingFragment
 import com.github.mikephil.charting.data.BarEntry
@@ -22,8 +24,12 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter
 @AndroidEntryPoint
 class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_mypage) {
 
+    private val viewModel : MypageViewModel by viewModels()
+    private var isEdit = false
+    private var editNameValue = "황규혁"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setMypageData()
         setOnClickBtnEdit()
         setOnClickBtnMypage()
         addTextChangedEditName()
@@ -31,8 +37,28 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
         drawChart()
     }
 
-    private var isEdit = false
-    private var editNameValue = "황규혁"
+    private fun setMypageData(){
+        viewModel.mypageResponse.observe(viewLifecycleOwner){
+            with(binding){
+                tvMypageUserName.text = "${it.nickname}님"
+                tvMypageUserInfo.text = if (it.gender) {"남성"} else {"여성"}
+                tvMultiuseStatePoint.text= "${it.currentPoint}P"
+                tvMultiuseStateRentalCount.text= it.totalUseCount.toString()
+                tvMultiuseStateReturnCount.text= it.totalReturnCount.toString()
+                createDailyChart(it.dailyStatisticsResList)
+                createMonthlyChart(it.monthlyStatisticsResList)
+            }
+        }
+    }
+
+    private fun createDailyChart(dailyStatisticsResList: List<MypageResponseDto.Result.DailyStatisticsResList>){
+
+    }
+
+    private fun createMonthlyChart(monthlyStatisticsResList: List<MypageResponseDto.Result.MonthlyStatisticsResList>){
+
+    }
+
     private fun setOnClickBtnEdit() {
         binding.ivEditUserNameBtn.setOnClickListener {
             binding.tvMypageUserName.visibility = View.INVISIBLE
@@ -49,7 +75,6 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
                 binding.tvMypageUserName.visibility = View.VISIBLE
                 binding.ivEditUserNameBtn.visibility = View.VISIBLE
                 binding.etEditUserName.visibility = View.INVISIBLE
-                binding.tvMypageUserName.text = editNameValue
                 binding.clMypageBtnContent.text = "로그아웃"
             }
             else {
@@ -64,7 +89,7 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                editNameValue = binding.etEditUserName.text.toString()
+                binding.tvMypageUserName.text = binding.etEditUserName.text.toString()
                 binding.clMypageBtn.isEnabled = editNameValue.isNotEmpty()
             }
 
@@ -86,7 +111,6 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
             }
         }
     }
-
     private fun drawChart() {
         val weekRental = ArrayList<BarEntry>()
         val weekReturn = ArrayList<BarEntry>()
