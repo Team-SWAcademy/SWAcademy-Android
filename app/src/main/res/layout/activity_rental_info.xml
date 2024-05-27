@@ -51,7 +51,7 @@
 <!--        android:scaleType="centerCrop"-->
 <!--        android:src="@drawable/img_multiuse_detail_return_map"/>-->
 
-    <com.kakao.vectormap.MapView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mv_rental_location_map"
         android:layout_width="match_parent"
         android:layout_height="167dp"
