@@ -2,6 +2,7 @@ package com.example.swacademy_android.di
 
 import com.example.swacademy_android.data.service.DetailService
 import com.example.swacademy_android.data.service.HomeService
+import com.example.swacademy_android.data.service.MypageService
 import com.example.swacademy_android.data.service.RentalService
 import dagger.Module
 import dagger.Provides
@@ -27,4 +28,9 @@ object ServiceModule {
     @Provides
     fun provideDetailService(retrofit: Retrofit): DetailService =
         retrofit.create(DetailService::class.java)
+
+    @Singleton
+    @Provides
+    fun providMypageService(retrofit: Retrofit): MypageService =
+        retrofit.create(MypageService::class.java)
 }
