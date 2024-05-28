@@ -3,6 +3,7 @@ package com.example.swacademy_android.presentation.mypage
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -26,15 +27,16 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
 
     private val viewModel : MypageViewModel by viewModels()
     private var isEdit = false
-    private var editNameValue = "황규혁"
+    private var editNameValue = ""
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMypageData()
+        addTextChangedEditName()
         setOnClickBtnEdit()
         setOnClickBtnMypage()
-        addTextChangedEditName()
         setOnCheckedStatistics()
         drawChart()
+        getNickName()
     }
 
     private fun setMypageData(){
@@ -48,6 +50,12 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
                 createDailyChart(it.dailyStatisticsResList)
                 createMonthlyChart(it.monthlyStatisticsResList)
             }
+        }
+    }
+
+    private fun getNickName(){
+        viewModel._editNickName.observe(viewLifecycleOwner){
+            binding.tvMypageUserName.text= "${it}님"
         }
     }
 
@@ -76,6 +84,10 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
                 binding.ivEditUserNameBtn.visibility = View.VISIBLE
                 binding.etEditUserName.visibility = View.INVISIBLE
                 binding.clMypageBtnContent.text = "로그아웃"
+                if(editNameValue.isNotEmpty()){
+                    Log.e("hyeon", "notempty value = ${editNameValue}")
+                    editUserNickName(editNameValue)
+                }
             }
             else {
                 Toast.makeText(context, "Log out", Toast.LENGTH_SHORT).show()
@@ -84,12 +96,19 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
         }
     }
 
+    private fun editUserNickName(editNickName : String){
+        Log.e("hyeon", "editUserName = ** ${editNickName}")
+        viewModel.patchMypageUserName(editNickName)
+        // TODO 수정완료 버튼 누르면 해당 함수가 실행됨 -> viewModel 감지해서 닉네임만 get 수정
+    }
+
     private fun addTextChangedEditName() {
         binding.etEditUserName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.tvMypageUserName.text = binding.etEditUserName.text.toString()
+                editNameValue = binding.etEditUserName.text.toString()
+                Log.e("hyeon","editNameValue : ${editNameValue}")
                 binding.clMypageBtn.isEnabled = editNameValue.isNotEmpty()
             }
 
