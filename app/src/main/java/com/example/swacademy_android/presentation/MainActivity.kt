@@ -39,7 +39,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
         with(binding){
             bottomNavigationMain.background = null
-            bottomNavigationMain.menu.getItem(1).isEnabled = false
+            bottomNavigationMain.menu.getItem(2).isEnabled = false
         }
 
         binding.bottomNavigationMain.run {
