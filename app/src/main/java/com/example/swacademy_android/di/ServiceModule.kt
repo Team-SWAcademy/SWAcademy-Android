@@ -3,6 +3,7 @@ package com.example.swacademy_android.di
 import com.example.swacademy_android.data.service.DetailService
 import com.example.swacademy_android.data.service.HomeService
 import com.example.swacademy_android.data.service.MypageService
+import com.example.swacademy_android.data.service.PointService
 import com.example.swacademy_android.data.service.RentalService
 import dagger.Module
 import dagger.Provides
@@ -33,4 +34,9 @@ object ServiceModule {
     @Provides
     fun providMypageService(retrofit: Retrofit): MypageService =
         retrofit.create(MypageService::class.java)
+
+    @Singleton
+    @Provides
+    fun providPointService(retrofit: Retrofit): PointService =
+        retrofit.create(PointService::class.java)
 }
