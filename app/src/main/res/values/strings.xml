@@ -40,4 +40,5 @@
     <string name="rental_choice_title">취급 다회용기</string>
     <string name="rental_choice_subtitle">빌릴 다회용기 종류를 선택해주세요.</string>
     <string name="rental_btn_content">다회용기 대여하기</string>
+    <string name="load_more">더보기</string>
 </resources>
