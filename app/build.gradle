@@ -130,4 +130,11 @@ dependencies {
 
     // Kakao map
     implementation 'com.kakao.maps.open:android:2.9.5'
+
+    def paging_version = "3.3.0"
+
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // alternatively - without Android dependencies for tests
+    testImplementation "androidx.paging:paging-common:$paging_version"
 }

@@ -41,7 +41,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         viewModel.homeResponseResult.observe(viewLifecycleOwner) {
             binding.tvCurrentCountContent.text = "${it.useCount}개"
             binding.tvUserName.text= "${it.nickname}님의"
-            binding.tvUserPoint.text ="${it.currentPoint}P"
+            binding.tvUserPoint.text ="(${it.currentPoint}P)"
         }
     }
 }
