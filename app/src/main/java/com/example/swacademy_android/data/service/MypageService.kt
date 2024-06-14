@@ -1,6 +1,5 @@
 package com.example.swacademy_android.data.service
 
-import com.example.swacademy_android.data.model.request.MypageEditNameRequestDto
 import com.example.swacademy_android.data.model.response.MypageEditNameResponseDto
 import com.example.swacademy_android.data.model.response.MypageResponseDto
 import retrofit2.http.Body

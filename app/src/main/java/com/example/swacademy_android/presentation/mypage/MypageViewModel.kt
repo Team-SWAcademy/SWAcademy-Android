@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.swacademy_android.data.model.request.MypageEditNameRequestDto
 import com.example.swacademy_android.data.model.response.HomeResponseDto
 import com.example.swacademy_android.data.model.response.MypageResponseDto
 import com.example.swacademy_android.domain.repository.MypageRepository

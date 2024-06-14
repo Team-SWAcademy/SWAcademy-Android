@@ -1,9 +1,5 @@
 package com.example.swacademy_android.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import com.example.swacademy_android.data.datasource.PointPagingSource
 import com.example.swacademy_android.data.datasource.PointRemoteDataSource
 import com.example.swacademy_android.data.model.response.PointListResponseDto
 import com.example.swacademy_android.data.service.PointService

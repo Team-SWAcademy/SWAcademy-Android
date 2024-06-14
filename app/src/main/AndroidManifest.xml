@@ -44,16 +44,21 @@
             android:name=".presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
-            android:name=".presentation.rental.CameraActivity"
+            android:name=".presentation.camera.CameraActivity"
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
 
         <activity
-            android:name=".presentation.CertifiedCompletionActivity"
+            android:name=".presentation.returns.CertifiedCompletionActivity"
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
@@ -73,16 +78,9 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.RentalInfoActivity"
-            android:exported="true"
+            android:name=".presentation.rental.RentalInfoActivity"
+            android:exported="false"
             android:screenOrientation="portrait">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

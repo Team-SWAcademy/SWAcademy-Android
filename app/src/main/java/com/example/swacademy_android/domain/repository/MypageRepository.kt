@@ -1,6 +1,5 @@
 package com.example.swacademy_android.domain.repository
 
-import com.example.swacademy_android.data.model.request.MypageEditNameRequestDto
 import com.example.swacademy_android.data.model.response.MypageEditNameResponseDto
 import com.example.swacademy_android.data.model.response.MypageResponseDto
 
