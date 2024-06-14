@@ -57,7 +57,7 @@ class RentalInfoActivity :
                         rentalBtn.setBackgroundResource(R.drawable.shape_d1e9ff_fill_e9f1ff_stroke_r50)
                     }
 
-                    choice.setBackgroundResource(R.drawable.shape_white_fill_3da9fc_stroke_r20)
+                    choice.setBackgroundResource(R.drawable.shape_f2f7ff_fill_3da9fc_stroke_r20)
                     chosenType = idx + 1
                 }
             } else {
