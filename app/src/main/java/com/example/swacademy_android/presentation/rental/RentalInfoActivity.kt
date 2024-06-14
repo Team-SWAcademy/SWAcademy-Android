@@ -9,7 +9,15 @@ import com.example.swacademy_android.databinding.ActivityRentalInfoBinding
 import com.example.swacademy_android.presentation.rental.viewmodel.RentalInfoViewModel
 import com.example.swacademy_android.presentation.returns.ReturnDialogFragment
 import com.example.swacademy_android.util.BindingActivity
+import com.kakao.vectormap.KakaoMap
+import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.LatLng
+import com.kakao.vectormap.MapLifeCycleCallback
+import com.kakao.vectormap.label.LabelOptions
+import com.kakao.vectormap.label.LabelStyle
+import com.kakao.vectormap.label.LabelStyles
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 @AndroidEntryPoint
 class RentalInfoActivity :
@@ -17,6 +25,8 @@ class RentalInfoActivity :
     private val viewModel by viewModels<RentalInfoViewModel>()
     var chosenType = -1
     var usedType: MutableList<Long> = mutableListOf()
+    var latitude = 37.4500221
+    var longitude = 126.653488
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +34,7 @@ class RentalInfoActivity :
         getLocationData()
         onClickRentalBtn()
         viewLocationData()
+        loadMap()
     }
 
     private fun choiceMultiUseCategory() {
@@ -46,7 +57,7 @@ class RentalInfoActivity :
                         rentalBtn.setBackgroundResource(R.drawable.shape_d1e9ff_fill_e9f1ff_stroke_r50)
                     }
 
-                    choice.setBackgroundResource(R.drawable.shape_white_fill_3da9fc_stroke_r20)
+                    choice.setBackgroundResource(R.drawable.shape_f2f7ff_fill_3da9fc_stroke_r20)
                     chosenType = idx + 1
                 }
             } else {
@@ -62,6 +73,8 @@ class RentalInfoActivity :
                 for (i in 0 until it.multiUseContainerIdList.size) {
                     usedType.add(it.multiUseContainerIdList[i])
                 }
+                latitude = if (it.latitude != 0.0) it.latitude else latitude
+                longitude = if (it.longitude != 0.0) it.longitude else longitude
                 Log.e("hyeon","usedType : ${usedType}")
                 choiceMultiUseCategory()
             }
@@ -89,4 +102,33 @@ class RentalInfoActivity :
         }
     }
 
+    private fun loadMap() {
+        var rentalMap = binding.mvRentalLocationMap
+        rentalMap.start(object : MapLifeCycleCallback() {
+            override fun onMapDestroy() {
+                Log.d("ej destroy", "map destroy")
+            }
+
+            override fun onMapError(p0: Exception?) {
+                Log.d("ej error", p0.toString())
+            }
+        }, object : KakaoMapReadyCallback() {
+            override fun onMapReady(p0: KakaoMap) {
+                Log.d("ej ready", "map ready")
+                val style = p0.labelManager?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_label_bluebottle)))
+                val options = LabelOptions.from(LatLng.from(latitude, longitude)).setStyles(style)
+                val layer = p0.labelManager?.layer
+                layer?.addLabel(options)
+            }
+
+            override fun getPosition(): LatLng {
+                // 지도 시작 시 위치 좌표를 설정
+                return LatLng.from(latitude, longitude)
+            }
+
+            override fun getZoomLevel(): Int {
+                return 17
+            }
+        })
+    }
 }
