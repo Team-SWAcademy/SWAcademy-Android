@@ -28,6 +28,11 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
     private val viewModel : MypageViewModel by viewModels()
     private var isEdit = false
     private var editNameValue = ""
+    private val weekRental = ArrayList<BarEntry>()
+    private val weekReturn = ArrayList<BarEntry>()
+    private val monthRental = ArrayList<BarEntry>()
+    private val monthReturn = ArrayList<BarEntry>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMypageData()
@@ -35,7 +40,6 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
         setOnClickBtnEdit()
         setOnClickBtnMypage()
         setOnCheckedStatistics()
-        drawChart()
         getNickName()
     }
 
@@ -49,6 +53,7 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
                 tvMultiuseStateReturnCount.text= it.totalReturnCount.toString()
                 createDailyChart(it.dailyStatisticsResList)
                 createMonthlyChart(it.monthlyStatisticsResList)
+                drawChart()
             }
         }
     }
@@ -60,11 +65,17 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
     }
 
     private fun createDailyChart(dailyStatisticsResList: List<MypageResponseDto.Result.DailyStatisticsResList>){
-
+        dailyStatisticsResList.forEachIndexed { idx, data ->
+            weekRental.add(BarEntry(0.8f + idx.toFloat(), data.useCount.toFloat()))
+            weekReturn.add(BarEntry(1.2f + idx.toFloat(), data.returnCount.toFloat()))
+        }
     }
 
     private fun createMonthlyChart(monthlyStatisticsResList: List<MypageResponseDto.Result.MonthlyStatisticsResList>){
-
+        monthlyStatisticsResList.forEachIndexed { idx, data ->
+            monthRental.add(BarEntry(0.8f + idx.toFloat(), data.useCount.toFloat()))
+            monthReturn.add(BarEntry(1.2f + idx.toFloat(), data.returnCount.toFloat()))
+        }
     }
 
     private fun setOnClickBtnEdit() {
@@ -131,12 +142,6 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
         }
     }
     private fun drawChart() {
-        val weekRental = ArrayList<BarEntry>()
-        val weekReturn = ArrayList<BarEntry>()
-        val monthRental = ArrayList<BarEntry>()
-        val monthReturn = ArrayList<BarEntry>()
-
-        createMockData(weekRental, weekReturn, monthRental, monthReturn)
         drawChart(weekRental, weekReturn, "week")
         drawChart(monthRental, monthReturn, "month")
     }
@@ -146,13 +151,13 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
 
         chart.run {
             description.isEnabled = false
-            setMaxVisibleValueCount(7)
+            setMaxVisibleValueCount(if (chartType == "week") 7 else 12)
             setPinchZoom(false)
             setDrawBarShadow(false)
             setDrawGridBackground(false)
             axisLeft.run {
                 axisMinimum = 0f
-                granularity = 5f
+                granularity = 1f
                 setDrawLabels(true)
                 setDrawGridLines(true)
                 setDrawAxisLine(false)
@@ -203,48 +208,9 @@ class MypageFragment : BindingFragment<FragmentMypageBinding>(R.layout.fragment_
     }
 
     inner class MonthXAxisFormatter : ValueFormatter() {
-        private val days = arrayOf("1월", "2월", "3월", "4월", "5월", "6월", "7월")
+        private val days = arrayOf("1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월")
         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
             return days.getOrNull(value.toInt() - 1) ?: ""
         }
-    }
-
-    private fun createMockData(
-        weekRental: ArrayList<BarEntry>,
-        weekReturn: ArrayList<BarEntry>,
-        monthRental: ArrayList<BarEntry>,
-        monthReturn: ArrayList<BarEntry>
-    ) {
-        weekRental.add(BarEntry(0.8f ,2.0f))
-        weekRental.add(BarEntry(1.8f, 7.0f))
-        weekRental.add(BarEntry(2.8f ,3.0f))
-        weekRental.add(BarEntry(3.8f ,9.0f))
-        weekRental.add(BarEntry(4.8f ,7.0f))
-        weekRental.add(BarEntry(5.8f ,3.0f))
-        weekRental.add(BarEntry(6.8f ,10.0f) )
-
-        weekReturn.add(BarEntry(1.2f ,1.0f))
-        weekReturn.add(BarEntry(2.2f, 3.0f))
-        weekReturn.add(BarEntry(3.2f ,4.0f))
-        weekReturn.add(BarEntry(4.2f ,8.0f))
-        weekReturn.add(BarEntry(5.2f ,3.0f))
-        weekReturn.add(BarEntry(6.2f ,5.0f))
-        weekReturn.add(BarEntry(7.2f ,6.0f))
-
-        monthRental.add(BarEntry(0.8f ,13.0f))
-        monthRental.add(BarEntry(1.8f, 14.0f))
-        monthRental.add(BarEntry(2.8f ,17.0f))
-        monthRental.add(BarEntry(3.8f ,14.0f))
-        monthRental.add(BarEntry(4.8f ,17.0f))
-        monthRental.add(BarEntry(5.8f ,20.0f))
-        monthRental.add(BarEntry(6.8f ,18.0f))
-
-        monthReturn.add(BarEntry(1.2f ,15.0f))
-        monthReturn.add(BarEntry(2.2f, 13.0f))
-        monthReturn.add(BarEntry(3.2f ,16.0f))
-        monthReturn.add(BarEntry(4.2f ,17.0f))
-        monthReturn.add(BarEntry(5.2f ,15.0f))
-        monthReturn.add(BarEntry(6.2f ,17.0f))
-        monthReturn.add(BarEntry(7.2f ,14.0f))
     }
 }
