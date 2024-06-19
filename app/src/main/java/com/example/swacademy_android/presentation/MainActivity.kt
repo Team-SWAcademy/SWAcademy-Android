@@ -3,6 +3,7 @@ package com.example.swacademy_android.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.example.swacademy_android.R
 import com.example.swacademy_android.databinding.ActivityMainBinding
@@ -20,6 +21,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         context = this
         initMainView()
