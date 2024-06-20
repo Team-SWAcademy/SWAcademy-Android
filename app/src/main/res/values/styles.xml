@@ -5,4 +5,10 @@
         <item name="windowSplashScreenIconBackgroundColor">@color/white_FAFDFF</item>
         <item name="windowSplashScreenAnimatedIcon">@android:color/transparent</item>
     </style>
+
+    <style name="SingUpBtn.Enable" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@color/gray_D9D9D9</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
 </resources>
