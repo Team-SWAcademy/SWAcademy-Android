@@ -14,29 +14,26 @@ import javax.inject.Inject
 @HiltViewModel
 class RentalInfoViewModel @Inject constructor(private val rentalRepository: RentalRepository) :
     ViewModel() {
+    private var rentalSuccess = false
     var locationId = MutableLiveData<Int>()
     var point = MutableLiveData<Int>()
     var rentalLocationResponse = MutableLiveData<RentalLocationResponseDto.Result>()
-    fun splitQrData(qrData: List<String>) {
-        locationId.value = qrData[0].toInt()
-        point.value = qrData[1].toInt()
-    }
 
-    fun getRentalLocationData(locationId: Int, point: Int) {
+    fun getRentalLocationData(locationId: Int, point: Int): Boolean {
         Log.e("hyeon", "${locationId} , ${point}")
         viewModelScope.launch {
             rentalRepository.getRentalLocationData(locationId, point).onSuccess {
                 Log.e("hyeon", "성공 : ${it.result}")
                 rentalLocationResponse.value = it.result
+                rentalSuccess = true
             }.onFailure { error ->
                 if (error is HttpException) {
                     val errorBody = error.response()?.errorBody()?.string()
-                    Log.e("hyeon", "next question http 연결 실패 $errorBody")
+                    Log.e("hyeon", "rental info http 연결 실패 $errorBody")
                 }
-                Log.e("hyeon", "next question 실패 ${error.message}")
+                Log.e("hyeon", "rental info 실패 ${error.message}")
             }
         }
+        return rentalSuccess
     }
-
-
 }
