@@ -7,4 +7,11 @@
     </style>
 
     <style name="Theme.SWAcademyAndroid" parent="Base.Theme.SWAcademyAndroid" />
+
+    <style name="Theme.SWAcademyAndroid.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white_FAFDFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_inset</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.SWAcademyAndroid</item>
+    </style>
 </resources>
