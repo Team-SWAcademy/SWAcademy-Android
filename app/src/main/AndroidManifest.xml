@@ -84,6 +84,11 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".presentation.singup.SignUpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
