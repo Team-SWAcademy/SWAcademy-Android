@@ -13,6 +13,7 @@ class TumblerFragment: BindingFragment<FragmentTumblerBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
         onClickVerifyCamera()
         onClickVerifyPhoto()
+        onClickQuestionMark()
     }
 
     private fun onClickVerifyCamera() {
@@ -24,6 +25,12 @@ class TumblerFragment: BindingFragment<FragmentTumblerBinding>(R.layout.fragment
     private fun onClickVerifyPhoto() {
         binding.clVerifyPhoto.setOnClickListener {
             // 앨범 사진으로 인증하기 버튼 누를시
+        }
+    }
+
+    private fun onClickQuestionMark() {
+        binding.tvQuestionMark.setOnClickListener {
+            // 물음표 버튼 누를시
         }
     }
 }
