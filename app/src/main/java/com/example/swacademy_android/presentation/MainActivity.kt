@@ -52,7 +52,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     R.id.menu_home -> HomeFragment()
                     R.id.menu_mypage -> MypageFragment()
                     R.id.menu_point -> PointFragment()
-                    //R.id.menu_store -> StoreFragment()
                     R.id.menu_tumbler -> TumblerFragment()
                     else -> HomeFragment()
                 })
