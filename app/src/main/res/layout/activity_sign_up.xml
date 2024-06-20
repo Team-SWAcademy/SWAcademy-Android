@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_sign_up_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="140dp"
+        android:layout_marginStart="37dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="사용자 정보를\n입력해주세요" />
+
+    <TextView
+        android:id="@+id/tv_nickname_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_sign_up_description"
+        app:layout_constraintStart_toStartOf="@id/tv_sign_up_description"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:text="닉네임" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/blue_3DA9FC"
+        app:boxStrokeWidth="2dp"
+        android:id="@+id/til_nickname_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_nickname_title"
+        app:layout_constraintStart_toStartOf="@id/tv_nickname_title"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="37dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nickname_edit_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="닉네임을 입력해주세요" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_gender_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/til_nickname_edit"
+        app:layout_constraintStart_toStartOf="@id/tv_nickname_title"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:text="성별" />
+
+    <RadioGroup
+        android:id="@+id/rg_gender_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_gender_title"
+        app:layout_constraintStart_toStartOf="@id/tv_gender_title"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_man_btn"
+            android:layout_width="123dp"
+            android:layout_height="42dp"
+            android:background="@drawable/selector_radio_btn_statistics"
+            android:textColor="@drawable/selector_radio_text_statistics"
+            android:layout_marginEnd="15dp"
+            android:button="@null"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="남자"
+            android:gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/rb_woman_btn"
+            android:layout_width="123dp"
+            android:layout_height="42dp"
+            android:background="@drawable/selector_radio_btn_statistics"
+            android:textColor="@drawable/selector_radio_text_statistics"
+            android:button="@null"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="여자"
+            android:gravity="center"/>
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_enter_btn"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="43dp"
+        android:layout_marginHorizontal="23dp"
+        android:background="@drawable/shape_d9d9d9_fill_r20_rect">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="입력완료"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
