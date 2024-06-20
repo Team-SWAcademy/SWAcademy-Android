@@ -76,6 +76,7 @@ class MultiuseDetailActivity :
             startActivity(Intent(this@MultiuseDetailActivity, CameraActivity::class.java)
                 .apply{
                     putExtra("useAt",viewModel.detailResponseDto.value?.useAt)
+                    putExtra("locationId",viewModel.detailResponseDto.value?.rentalLocationId)
                 })
         }
     }

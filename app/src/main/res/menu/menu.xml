@@ -14,10 +14,9 @@
         android:id="@+id/menu_placeholder"
         android:title="대여 카메라"/>
     <item
-        android:id="@+id/menu_store"
-        android:title="상점"
-        android:icon="@drawable/ic_store"
-        />
+        android:id="@+id/menu_tumbler"
+        android:title="텀블러"
+        android:icon="@drawable/ic_tumber"/>
     <item
         android:id="@+id/menu_mypage"
         android:title="마이페이지"

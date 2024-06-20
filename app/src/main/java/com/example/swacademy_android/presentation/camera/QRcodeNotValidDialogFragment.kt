@@ -1,4 +1,4 @@
-package com.example.swacademy_android.presentation.rental
+package com.example.swacademy_android.presentation.camera
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,25 +10,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
-import com.example.swacademy_android.data.model.request.RentalMultiUseRequestDto
-import com.example.swacademy_android.databinding.FragmentRentalDialogBinding
+import com.example.swacademy_android.databinding.FragmentQrcodeNotValidDialogBinding
 import com.example.swacademy_android.presentation.MainActivity
-import com.example.swacademy_android.presentation.camera.CameraViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RentalDialogFragment(private val rentalData: RentalMultiUseRequestDto) : DialogFragment() {
+class QRcodeNotValidDialogFragment() : DialogFragment() {
 
-    private val viewModel: CameraViewModel by viewModels()
-    private var _binding: FragmentRentalDialogBinding? = null
-    private val binding get() = requireNotNull(_binding) { "RentalDialogFrgament is null" }
+    private var _binding: FragmentQrcodeNotValidDialogBinding? = null
+    private val binding get() = requireNotNull(_binding) { "QRcodeNotValidDialogFrgament is null" }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRentalDialogBinding.inflate(inflater, container, false)
+        _binding = FragmentQrcodeNotValidDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,25 +40,14 @@ class RentalDialogFragment(private val rentalData: RentalMultiUseRequestDto) : D
 
     private fun setBtnClickEvent() {
         with(binding) {
-            btnCancel.setOnClickListener {
+            btnGoHome.setOnClickListener {
                 dismiss()
-            }
-
-            btnConfirm.setOnClickListener {
-                viewModel.postRentalMultiUse(rentalData)
-                viewModel.responseStatusCode.observe(viewLifecycleOwner) {
-                    if (it == "USE2000") { //대여 성공
-                        Log.e("hyeon", "성공 use2000")
-                        dismiss()
-                        goHomeFragment()
-                    }
-                }
+                goHomeFragment()
             }
         }
     }
 
-
-    private fun goHomeFragment() {
+    private fun goHomeFragment(){
         startActivity(
             Intent(
                 requireActivity(),
@@ -70,14 +55,6 @@ class RentalDialogFragment(private val rentalData: RentalMultiUseRequestDto) : D
             ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         )
     }
-
-    fun setRentalMultiUse(qrCodeDataList: List<String>): List<Int> {
-        return listOf(
-            qrCodeDataList[0].toInt(),
-            qrCodeDataList[1].toInt()
-        )
-    }
-
     override fun onResume() {
         super.onResume()
         dialog?.window?.setLayout(

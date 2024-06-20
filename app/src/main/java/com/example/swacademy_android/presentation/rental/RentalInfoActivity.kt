@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.example.swacademy_android.R
 import com.example.swacademy_android.data.model.request.RentalMultiUseRequestDto
 import com.example.swacademy_android.databinding.ActivityRentalInfoBinding
+import com.example.swacademy_android.presentation.camera.QRcodeNotValidDialogFragment
 import com.example.swacademy_android.presentation.rental.viewmodel.RentalInfoViewModel
 import com.example.swacademy_android.presentation.returns.ReturnDialogFragment
 import com.example.swacademy_android.util.BindingActivity
@@ -30,11 +31,8 @@ class RentalInfoActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("hyeon","rentalInfo")
         getLocationData()
         onClickRentalBtn()
-        viewLocationData()
-        loadMap()
     }
 
     private fun choiceMultiUseCategory() {
@@ -49,9 +47,7 @@ class RentalInfoActivity :
         choiceBindings.forEachIndexed { idx, choice ->
             if (usedType.contains(idx.toLong() + 1)) {
                 choice.setOnClickListener {
-                    Log.e("hyeon","click 됨")
                     if (chosenType != -1) {
-                        Log.e("hyeon","실제로 값이 눌러짐")
                         choiceBindings[chosenType - 1].setBackgroundResource(R.drawable.shape_white_fill_d1e9ff_stroke_r20)
                     } else {
                         rentalBtn.setBackgroundResource(R.drawable.shape_d1e9ff_fill_e9f1ff_stroke_r50)
@@ -75,7 +71,6 @@ class RentalInfoActivity :
                 }
                 latitude = if (it.latitude != 0.0) it.latitude else latitude
                 longitude = if (it.longitude != 0.0) it.longitude else longitude
-                Log.e("hyeon","usedType : ${usedType}")
                 choiceMultiUseCategory()
             }
         }
@@ -84,7 +79,12 @@ class RentalInfoActivity :
     private fun getLocationData() {
         val locationId = intent.getIntExtra("locationId", -1)
         val point = intent.getIntExtra("point", -1)
-        viewModel.getRentalLocationData(locationId, point)
+        if (viewModel.getRentalLocationData(locationId, point)) {
+            viewLocationData()
+            loadMap()
+        } else {
+            showQRcodeNotValidDialogFragment()
+        }
     }
 
     private fun onClickRentalBtn() {
@@ -102,6 +102,12 @@ class RentalInfoActivity :
         }
     }
 
+    private fun showQRcodeNotValidDialogFragment() {
+        QRcodeNotValidDialogFragment().apply {
+            show(supportFragmentManager, "RentalDialogFragment")
+        }
+    }
+
     private fun loadMap() {
         var rentalMap = binding.mvRentalLocationMap
         rentalMap.start(object : MapLifeCycleCallback() {
@@ -115,7 +121,8 @@ class RentalInfoActivity :
         }, object : KakaoMapReadyCallback() {
             override fun onMapReady(p0: KakaoMap) {
                 Log.d("ej ready", "map ready")
-                val style = p0.labelManager?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_label_bluebottle)))
+                val style =
+                    p0.labelManager?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_label_bluebottle)))
                 val options = LabelOptions.from(LatLng.from(latitude, longitude)).setStyles(style)
                 val layer = p0.labelManager?.layer
                 layer?.addLabel(options)
