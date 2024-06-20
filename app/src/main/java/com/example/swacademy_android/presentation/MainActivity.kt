@@ -12,6 +12,7 @@ import com.example.swacademy_android.presentation.point.PointFragment
 import com.example.swacademy_android.presentation.camera.CameraActivity
 import com.example.swacademy_android.presentation.mypage.MypageFragment
 import com.example.swacademy_android.presentation.store.StoreFragment
+import com.example.swacademy_android.presentation.tumbler.TumblerFragment
 import com.example.swacademy_android.util.BindingActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,7 +52,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     R.id.menu_home -> HomeFragment()
                     R.id.menu_mypage -> MypageFragment()
                     R.id.menu_point -> PointFragment()
-                    R.id.menu_store -> StoreFragment()
+                    //R.id.menu_store -> StoreFragment()
+                    R.id.menu_tumbler -> TumblerFragment()
                     else -> HomeFragment()
                 })
                 true
