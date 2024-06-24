@@ -2,6 +2,8 @@
 
 인하대학교 탄소중립 sw아카데미 다회용기팀 안드로이드
 
+![MacBook Air - 3](https://github.com/Team-SWAcademy/SWAcademy-Android/assets/70602631/be42ef75-6997-40b6-9857-eac16660c9d5)
+
 ## 👥 Android 팀원
 |신서현|조은정|
 |:-:|:-:|
