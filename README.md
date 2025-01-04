@@ -34,7 +34,7 @@
 
 ## 주요 기능
 [🔗 서비스 데모 영상 바로가기 Click 👈](https://www.youtube.com/watch?v=GrSHAVIq5mY&feature=youtu.be)
-![페이지7 (2)](https://github.com/Team-SWAcademy/SWAcademy-Android/assets/70602631/44d1b651-5680-4822-a57e-89ab5d0bf6ef)
+![image](https://github.com/user-attachments/assets/c00f186d-e197-4552-acdf-481054ea4d24)
 ![페이지 8](https://github.com/Team-SWAcademy/SWAcademy-Android/assets/70602631/c0329420-36cb-4d37-8ca8-bd62b1db6eba)
 ![페이지 9](https://github.com/Team-SWAcademy/SWAcademy-Android/assets/70602631/4f48d6e0-9ebb-4579-a4e3-64a4db46c1a7)
 
