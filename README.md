@@ -1,4 +1,5 @@
 # 우리의 용기
+(2024-1년도 인하대학교 SW 아카데미 2기 탄소중립 프로젝트)
 ## 서비스 소개
 **♻️ 우리의 용기 (Our Courage)는** 
 <br>다회용기 사용을 촉진하고 카페와 협력하여 지속 가능한 소비를 돕는 친환경 플랫폼입니다.
@@ -31,3 +32,31 @@
 | `API 연결` `카카오 소셜 로그인` `QR 대여/반납 기능`<br> `홈 화면` `포인트 현황 화면` `다회용기 세부사항 화면` `프로젝트 초기 세팅` | `마이페이지 화면` `스플래시 화면` `로그인 화면` <br> `영수증 인증 화면` `다회용기 세부사항 화면` `카카오 지도` |
 
 ## 안드로이드 아키텍처 설계
+### 📁 Foldering
+```
+📂 swacademy_android
+┣ 📂 application
+┣ 📂 data
+┃ ┣ 📂 datasource
+┃ ┣ 📂 interceptor
+┃ ┣ 📂 local
+┃ ┣ 📂 model
+┃ ┣ 📂 repository //impl
+┃ ┣ 📂 service
+┣ 📂 di
+┣ 📂 domain
+┃ ┣ 📂 repository // interface
+┣ 📂 presentation
+┃ ┣ 📂 camera
+┃ ┣ 📂 detail
+┃ ┣ 📂 home
+┃ ┣ 📂 login
+┃ ┣ 📂 mypage
+┃ ┣ 📂 point
+┃ ┣ 📂 rental
+┃ ┣ 📂 returns
+┃ ┣ 📂 signup
+┃ ┣ 📂 tumbler
+┣ 📂 util
+
+```
