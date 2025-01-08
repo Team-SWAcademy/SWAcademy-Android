@@ -20,7 +20,7 @@
 ## 기술 스택
 | | Tech Stack  |
 | --- | --- |
-| 아키텍처 | MVVM , Clean Architecture |
+| 아키텍처 | MVVM , Google Recommended Architecture |
 | 의존성 주입 | Hilt |
 | 소셜로그인 | KakaoLogin |
 | 데이터 연동 | DataBinding |
